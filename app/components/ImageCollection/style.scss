@@ -1,0 +1,17 @@
+.image-collection {
+  display: flex;
+  flex-direction: column;
+  flex: auto;
+}
+.image-content {
+  margin-top: 10px;
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: center;
+}
+.image {
+  width: 300px;
+  height: 300px;
+  margin-left: 10px;
+  margin-top: 10px;
+}
