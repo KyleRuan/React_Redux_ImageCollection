@@ -9,7 +9,7 @@ import thunkMiddleware from 'redux-thunk';
 import rootReducer from './reducers';
 // import ImageCollection from './components/ImageCollection';
 import ImageCollection from './components/ImageCollection';
-import * as actionCreators from './actions';
+import * as actionCreators from './actions/ImageAction';
 
 
 const store = applyMiddleware(thunkMiddleware)(createStore)(rootReducer);

@@ -2,12 +2,9 @@
  * Created by KyleRuan on 2017/5/6.
  */
 import { combineReducers } from 'redux';
-import items from './items';
-import editor from './editor';
+import ImageReducer from './ImageReducer';
 
 const rootReducer = combineReducers({
-  items,
-  editor
+  ImageReducer
 });
-
 export default rootReducer;

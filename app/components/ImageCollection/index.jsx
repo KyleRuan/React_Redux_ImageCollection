@@ -7,18 +7,19 @@ import Header from '../Header';
 
 export default class ImageCollection extends React.Component {
   componentDidMount() {
+    this.props.actions.fetchImages();
   }
 
   render() {
-    const { state, actions } = this.props;
-    const { isEditing, selectedId } = state.editor;
-    const imgurl = 'https://drscdn.500px.org/photo/210646819/q%3D80_h%3D450/972f2288d5428003f41de6b90cfb3a76';
-    const imgs = [imgurl, imgurl, imgurl, imgurl];
-    const imgss = [...imgs, ...imgs, ...imgs, ...imgs];
+    const { state } = this.props;
+    const { imgURLs } = state.ImageReducer;
     let i = 0;
-    const imageCollection = imgss.map(img => (
-      <img alt="tangerine love" key={i++} src={img} className="image" />
-    ));
+    let imageCollection;
+    if (imgURLs.length > 0) {
+      imageCollection = imgURLs.map(img => (
+        <img alt="tangerine love" key={i++} src={img} className="image" />
+      ));
+    }
     return (
       <div className="image-collection">
         <Header />
