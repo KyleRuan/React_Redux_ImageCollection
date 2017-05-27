@@ -9,7 +9,8 @@
     "jsx-a11y/href-no-hash":"off",
     "react/prop-types":"off",
     "no-extraneous-dependencies":"off",
-    "react/require-default-props":"off"
+    "react/require-default-props":"off",
+    "no-undef": "off"
   },
   "globals": {
     "document": true,

@@ -6,8 +6,8 @@ var path = require('path');
 var HtmlWebpackPlugin = require('html-webpack-plugin');
 var webpack = require('webpack');
 var ROOT_PATH =path.resolve(__dirname);
-var APP_PATH = path.resolve(ROOT_PATH,'app');
-var BUILD_PATH = path.resolve(ROOT_PATH,'build');
+var APP_PATH = ROOT_PATH;
+var BUILD_PATH = path.resolve(path.dirname(__dirname),'dist');
 const ExtractTextPlugin = require("extract-text-webpack-plugin");
 const extractSass = new ExtractTextPlugin({
   filename: "[name].[contenthash].css",
@@ -20,7 +20,7 @@ module.exports = {
   },
   output: {
     path:  BUILD_PATH,
-    filename: 'bundle.js'
+    filename: 'index.js'
   },
   //开启dev source map
   devtool: 'eval-source-map',
@@ -47,7 +47,7 @@ module.exports = {
       {
         test: /\.jsx?$/,
         loader: ['babel-loader'],
-        include:APP_PATH
+        include:APP_PATH,
       },
       {
         test: /\.scss$/,
@@ -67,11 +67,12 @@ module.exports = {
   },
   plugins: [new HtmlWebpackPlugin(
       {
-        title:"kyleruan"
+        title:"ImageCollection"
       }
   ),extractSass],
   resolve:{
     extensions:['.','.js','.jsx']
   }
+
 
 }

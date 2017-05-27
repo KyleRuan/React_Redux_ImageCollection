@@ -11,7 +11,6 @@ import rootReducer from './reducers';
 import ImageCollection from './components/ImageCollection';
 import * as actionCreators from './actions/ImageAction';
 
-
 const store = applyMiddleware(thunkMiddleware)(createStore)(rootReducer);
 const App = connect(state => ({ state }),
   dispatch => ({
@@ -31,26 +30,3 @@ render(
   </Provider>,
   container
 );
-
-
-// const items = [
-//   {
-//     id: '6c89132-8dw2w1201s',
-//     title: 'Hello world',
-//     content: '## testing markdown',
-//     time: 1458030208280
-//   },
-//   {
-//     id: '6c89132-8dw22rce201s',
-//     title: 'Hello',
-//     content: '# testing markdown',
-//     time: 1458030208359
-//   }
-// ];
-// const app = document.createElement('div');
-// document.body.appendChild(app);
-// ReactDom.render(
-//   <Provider store={store} >
-//     <ImageCollection items={items} />
-//   </Provider>
-//     , app);
