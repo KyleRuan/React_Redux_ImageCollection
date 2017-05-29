@@ -6,7 +6,7 @@ import fetch from 'isomorphic-fetch';
 
 export const FETCH_IMAGE_LIST = 'FETCH_IMAGE_LIST';
 
-function makeFakeData() {
+export function fetchImages() {
   return (dispatch) => {
     fetch('/api', { 'Content-Type': 'application/json' }).then(
       (res) => {
@@ -20,12 +20,4 @@ function makeFakeData() {
       }
     );
   };
-}
-function ImageList(imgURLs) {
-  return (dispatch) => {
-     dispatch({ type: FETCH_IMAGE_LIST, imgURLs });
-   };
-}
-export function fetchImages() {
-  return makeFakeData([]);
 }
