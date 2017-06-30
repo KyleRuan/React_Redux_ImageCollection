@@ -1,0 +1,69 @@
+/**
+ * Created by KyleRuan on 2017/4/25.
+ */
+var mongoose = require('mongoose');
+var imageSchema = require('../DBModels/imageSchema');
+var Image = mongoose.model("images_stats",imageSchema); // 连接到 word_stats collection上去
+
+mongoose.Promise = require('bluebird')
+mongoose.connect('mongodb://localhost/images');
+
+mongoose.connection.on('open', function () {
+  let data = new Object();
+  data.image_url = 'https://drscdn.500px.org/photo/210646819/q%3D80_h%3D450/972f2288d5428003f41de6b90cfb3a76';
+  data.coverURL = null;
+  let user = new Object();
+  user.userId = "test123";
+  user.username = "kyleruan";
+  data.user = user;
+  data.tags = "food";
+  data.description = null;
+  data.times_viewed = 23451;
+  data.taken_at = 'beijing';
+  let pic = new Object();
+  pic.width= 500;
+  pic.height = 500;
+  data.pic = pic;
+   data;
+  var image = new Image(data);
+  image.save(function (err, image) {
+    console.log("save---------");
+  })
+})
+
+function queryWords() {
+  var word = new Image();
+
+    //
+  Image.find({size:{$gt:5}},function (err,results) {
+    console.log("\n results count: ",results.length);
+  })
+  var query  = Image.count().where('first').in(['a','e','i','o','u']);
+  query.where("last").in(['a','e','i','o','u']);
+  query.exec(function (err,count) {
+    console.log("----------------------count "+count);
+    if (err){
+      console.log("query words error ："+ err);
+    }
+    console.log("\n There are "+ count + " words start with and end with 'a','e','i','o','u' ");
+  });
+
+  query.find().limit(5).sort({size:-1});
+  query.exec(function (err,docs) {
+    console.log("\n 5 words that start with and end with 'a','e','i','o','u' sort by size : ")
+    console.log(docs)
+  });
+  //
+  query = Image.find();
+  query.where('size',{gte:10})
+  query.limit(10);
+  query.select({word:1,size:1})
+  query.exec(function (err,docs) {
+    console.log("\n Words with even lengths and longer than 5 letters: ")
+    for (var i in docs ) {
+      console.log(JSON.stringify(docs[i]));
+    }
+
+  })
+
+}

@@ -13,11 +13,11 @@ export default class ImageCollection extends React.Component {
   render() {
     const { state } = this.props;
     const { imgURLs } = state.ImageReducer;
-    let i = 0;
+    let i = 0; // array
     let imageCollection;
     if (imgURLs.length > 0) {
       imageCollection = imgURLs.map(img => (
-        <img alt="tangerine love" key={i++} src={img} className="image" />
+        <img alt={img.alt} key={i++} src={img.image_url} className="image" style={img.pic} />
       ));
     }
     return (

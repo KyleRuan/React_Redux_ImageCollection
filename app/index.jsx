@@ -7,7 +7,6 @@ import { bindActionCreators, createStore, applyMiddleware } from 'redux';
 import { Provider, connect } from 'react-redux';
 import thunkMiddleware from 'redux-thunk';
 import rootReducer from './reducers';
-// import ImageCollection from './components/ImageCollection';
 import ImageCollection from './components/ImageCollection';
 import * as actionCreators from './actions/ImageAction';
 

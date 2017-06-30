@@ -52,7 +52,7 @@
   "scripts": {
     "test": "NODE_ENV=production mocha --compilers js:babel-core/register --require ignore-styles",
     "build": "webpack",
-    "dev": "webpack-dev-server --hot"
+    "dev": "NODE_ENV=dev webpack-dev-server --hot"
   },
   "repository": {
     "type": "git",

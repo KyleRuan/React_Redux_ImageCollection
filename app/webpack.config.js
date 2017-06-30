@@ -20,6 +20,7 @@ module.exports = {
   },
   output: {
     path:  BUILD_PATH,
+    publicPath: "http://localhost:8080/",
     filename: 'index.js'
   },
   //开启dev source map
@@ -69,7 +70,19 @@ module.exports = {
       {
         title:"ImageCollection"
       }
-  ),extractSass],
+  ),extractSass,
+    new webpack.optimize.CommonsChunkPlugin({
+      name: 'commons',
+      filename: 'commons.js',
+      minChunks: 2,
+    }),
+    // 设置环境
+    new webpack.DefinePlugin({
+      'process.env': {
+        'NODE_ENV': JSON.stringify('production')  //production
+      }
+    })
+  ],
   resolve:{
     extensions:['.','.js','.jsx']
   }

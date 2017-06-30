@@ -6,7 +6,7 @@ import React from 'react';
 function Header() {
   return (
     <nav className="navbar navbar-dark bg-inverse">
-      <a className="navbar-brand" href="#">Image Collection</a>
+      <a className="navbar-brand" href="#">图 集</a>
     </nav>
   );
 }
