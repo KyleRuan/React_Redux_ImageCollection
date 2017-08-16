@@ -21,7 +21,7 @@ module.exports = {
   output: {
     path:  BUILD_PATH,
     publicPath: "http://localhost:8080/",
-    filename: 'index.js'
+    filename: '[name].js'
   },
   //开启dev source map
   devtool: 'eval-source-map',

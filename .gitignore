@@ -42,3 +42,6 @@ jspm_packages
 app/build/
 build/
 dist/
+DBCache/
+app/nohup.out
+nohup.out

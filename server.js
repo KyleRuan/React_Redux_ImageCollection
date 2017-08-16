@@ -17,6 +17,26 @@ var https = require('https');
 var privateKey  = fs.readFileSync(path.join(__dirname,'private.pem'), 'utf8');
 var certificate = fs.readFileSync(path.join(__dirname,'file.crt'), 'utf8');
 var credentials = {key: privateKey, cert: certificate};
+var mongoose = require('mongoose');
+
+// 数据库连接的管理
+var expressSession = require('express-session');
+var mongoStore = require('connect-mongo')({session:expressSession});
+// require('./models/users_model');
+var conn =mongoose.connect('mongodb://localhost/imageSet');
+mongoose.Promise = require('bluebird');
+// 保存session
+app.use(expressSession({
+  secret: 'SECRET',
+  cookie: {maxAge:60*60*1000},
+  resave:false,
+  saveUninitialized: true,
+  store: new  mongoStore({
+    mongooseConnection: conn.connection,
+    collection: 'sessions'
+  })
+}));
+
 
 var httpServer = http.createServer(app);
 var httpsServer = https.createServer(credentials, app);
@@ -34,6 +54,8 @@ httpsServer.listen(SSLPORT, function() {
 app.engine('.html',require('ejs').__express);
 app.set('views', path.join(__dirname, 'dist'));
 app.set('view engine', 'html');
+
+
 
 //中间件设置
 /*app.use(bodyParser.urlencoded({ extended: true }));
